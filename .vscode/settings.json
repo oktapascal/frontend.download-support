@@ -1,0 +1,95 @@
+{
+  "minify.css": {
+    "advanced": true,
+    "aggressiveMerging": true,
+    "compatibility": "*",
+    "inliner": {},
+    "keepBreaks": false,
+    "keepSpecialComments": "*",
+    "mediaMerging": true,
+    "processImport": true,
+    "processImportFrom": ["all"],
+    "rebase": true,
+    "restructuring": true,
+    "root": "${workspaceRoot}",
+    "roundingPrecision": 2,
+    "semanticMerging": false,
+    "shorthandCompacting": true
+  },
+  "minify.minifyExistingOnSave": true,
+  "json.validate.enable": false,
+  "workbench.editor.showTabs": "single",
+  "editor.inlineSuggest.enabled": true,
+  "editor.minimap.enabled": false,
+  "editor.lineNumbers": "relative",
+  "workbench.startupEditor": "none",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.colorDecorators": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "explorer.compactFolders": false,
+  "workbench.colorTheme": "GitHub Dark Default",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "workbench.activityBar.location": "top",
+  "prettier.printWidth": 150,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.showTabs": "single",
+  "editor.fontSize": 13,
+  "editor.fontFamily": "Hack",
+  "highlight.regexes": {
+    "( v-[a-zA-Z0-9]+)(=)(\".+?\")": {
+      "regexFlags": "g",
+      "filterLanguageRegex": "html",
+      "decorations": [{ "color": "yellow" }, { "color": "white" }, { "color": "green" }]
+    }
+  }
+}
