@@ -6,7 +6,7 @@ import { useForm, useField } from 'vee-validate'
 const schema = toTypedSchema(z.object({
   name: z.string().min(1, "nama tidak boleh kosong").max(100, { message: "maksimal karakter berjumlah 100 karakter" }),
   email: z.string().min(1, "email tidak boleh kosong").email({ message: "email tidak valid" }),
-  password: z.string().min(1, "password tidak boleh kosong"),
+  password: z.string().min(6, "password minimal 6 karakter"),
 }))
 
 const { handleSubmit, errors } = useForm({
@@ -22,8 +22,19 @@ const { value: name } = useField('name')
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const onSubmit = handleSubmit(values => {
-  alert(JSON.stringify(values, null, 2))
+const onSubmit = handleSubmit(async values => {
+  const { email, name, password } = values
+
+  const { data } = await useFetch('/api/signup', {
+    method: 'POST',
+    body: {
+      email,
+      name,
+      password
+    }
+  })
+
+  alert(JSON.stringify(data, null, 2))
 })
 </script>
 

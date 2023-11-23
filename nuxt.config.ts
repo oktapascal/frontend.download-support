@@ -16,4 +16,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  supabase: {
+    redirectOptions: {
+      login: "/login",
+      callback: "/confirm",
+      exclude: ["/register"],
+    },
+  },
 });
