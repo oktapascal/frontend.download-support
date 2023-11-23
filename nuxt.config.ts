@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css", "~/assets/css/app.css"],
   devtools: { enabled: true },
-  modules: ["@vueuse/nuxt"],
+  modules: ["@vueuse/nuxt", "@nuxtjs/supabase"],
   postcss: {
     plugins: {
       tailwindcss: {},
