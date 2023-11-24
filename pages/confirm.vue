@@ -7,6 +7,9 @@
       </div>
       <div class="card-content text-center">
         Terima kasih telah mendaftar. Untuk melanjutkan proses, silahkan cek email anda untuk melakukan verifikasi.
+        <div class="mt-4">
+          <NuxtLink to="/login" class="btn btn-default">Sign In</NuxtLink>
+        </div>
       </div>
     </div>
   </div>
