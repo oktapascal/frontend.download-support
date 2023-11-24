@@ -12,12 +12,22 @@ export default defineEventHandler(async (event) => {
 
   const supabase = await serverSupabaseClient<Database>(event);
 
-  const { data } = await supabase.auth.signUp({
+  const { count } = await supabase.from("users").select("*", { count: "exact" }).eq("email", email);
+
+  if (count !== null && count > 0) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Bad Request",
+      message: "Email yang sama sudah terdaftar",
+    });
+  }
+
+  const { error } = await supabase.auth.signUp({
     email,
     password,
   });
 
-  const { error } = await supabase.from("users").insert({ email, name });
+  await supabase.from("users").insert({ email, name });
 
-  return { message: "OK" };
+  return { status: true };
 });
