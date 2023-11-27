@@ -22,12 +22,12 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data } = await supabase.auth.signUp({
     email,
     password,
   });
 
-  await supabase.from("users").insert({ email, name });
+  await supabase.from("users").insert({ email, name, user_id: data.user?.id });
 
   return { status: true };
 });

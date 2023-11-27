@@ -9,7 +9,7 @@ const schema = toTypedSchema(z.object({
   password: z.string().min(1, "password tidak boleh kosong"),
 }))
 
-const { handleSubmit, errors } = useForm({
+const { handleSubmit, errors, isSubmitting, setFieldError } = useForm({
   validationSchema: schema,
   initialValues: {
     name: '',
@@ -22,8 +22,25 @@ const { value: name } = useField('name')
 const { value: email } = useField('email')
 const { value: password } = useField('password')
 
-const onSubmit = handleSubmit(values => {
-  alert(JSON.stringify(values, null, 2))
+const onSubmit = handleSubmit(async values => {
+  const { email, name, password } = values
+
+  const { data, error } = await useFetch('/api/signup', {
+    method: 'POST',
+    body: {
+      email,
+      name,
+      password
+    }
+  })
+
+  if (error.value?.statusCode === 400) {
+    setFieldError('email', error.value?.data.message)
+  }
+
+  if (data.value) {
+    await navigateTo('/confirm', { redirectCode: 302 })
+  }
 })
 </script>
 
@@ -38,22 +55,24 @@ const onSubmit = handleSubmit(values => {
         <form @submit="onSubmit" novalidate>
           <div class="relative" :class="{ error: errors.name }">
             <label for="name" class="label">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name..." class="form-control" v-model="name" />
+            <input type="text" id="name" name="name" placeholder="Your name..." class="form-control" v-model="name"
+              :readonly="isSubmitting" />
             <small class="text-sm font-medium leading-none text-red-600 pl-1">{{ errors.name }}</small>
           </div>
           <div class="relative" :class="{ error: errors.email }">
             <label for="email" class="label">Email</label>
-            <input type="text" id="email" name="email" placeholder="Your email..." class="form-control" v-model="email" />
+            <input type="text" id="email" name="email" placeholder="Your email..." class="form-control" v-model="email"
+              :readonly="isSubmitting" />
             <small class="text-sm font-medium leading-none text-red-600 pl-1">{{ errors.email }}</small>
           </div>
           <div class="relative" :class="{ error: errors.password }">
             <label for="password" class="label">Password</label>
             <input type="password" id="password" name="password" placeholder="Your password..." class="form-control"
-              v-model="password" />
+              v-model="password" :readonly="isSubmitting" />
             <small class="text-sm font-medium leading-none text-red-600 pl-1">{{ errors.password }}</small>
           </div>
           <div class="relative block mt-8">
-            <button type="submit" class="btn btn-default w-full">Sign Up</button>
+            <button type="submit" class="btn btn-default w-full" :disabled="isSubmitting">Sign Up</button>
           </div>
         </form>
         <div class="absolute bottom-0 right-0 left-0 text-center">
