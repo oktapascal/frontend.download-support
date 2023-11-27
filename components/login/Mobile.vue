@@ -8,6 +8,8 @@ const schema = toTypedSchema(z.object({
   password: z.string().min(1, "password tidak boleh kosong"),
 }))
 
+const { $toast } = useNuxtApp()
+
 const { handleSubmit, errors, isSubmitting, setFieldError } = useForm({
   validationSchema: schema,
   initialValues: {
@@ -36,7 +38,7 @@ const onSubmit = handleSubmit(async values => {
         setFieldError('email', error.value?.data.message)
         break;
       default:
-        alert(error.value?.data.message)
+        $toast.error(error.value?.data.message)
         break;
     }
   }
@@ -77,4 +79,5 @@ const onSubmit = handleSubmit(async values => {
       </div>
     </div>
   </div>
+  <Toaster position="top-center" richColors />
 </template>

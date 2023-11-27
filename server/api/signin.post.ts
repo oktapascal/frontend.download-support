@@ -29,15 +29,10 @@ export default defineEventHandler(async (event) => {
       throw createError({
         statusCode: error.status,
         statusMessage: "INVALID_LOGIN_CREDENTIALS",
-        message: "Email tidak terdaftar",
+        message: "Email/Password tidak sesuai dengan credentials anda",
       });
     }
   }
-
-  console.log(`cause : ${error?.cause}`);
-  console.log(`message : ${error?.message}`);
-  console.log(`name : ${error?.name}`);
-  console.log(`status : ${error?.status}`);
 
   return { status: true };
 });
