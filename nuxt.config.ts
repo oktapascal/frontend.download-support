@@ -7,6 +7,9 @@ export default defineNuxtConfig({
       link: [{ rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" }],
     },
   },
+  build: {
+    transpile: ["vue-sonner"],
+  },
   css: ["~/assets/css/main.css", "~/assets/css/app.css"],
   devtools: { enabled: true },
   modules: ["@vueuse/nuxt", "@nuxtjs/supabase"],
