@@ -1,23 +1,35 @@
+<script setup lang="ts">
+const type = useTicketType();
+
+function onClickType(value: string) {
+  type.value = value
+}
+</script>
+
 <template>
   <div class="grid grid-cols-12 gap-1">
     <div class="relative bg-white flex flex-col py-5 col-span-2 h-screen">
       <button type="button"
-        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300">
+        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300"
+        :class="{ 'bg-neutral-200': type === 'all' }" @click="onClickType('all')">
         <i class="ri-inbox-2-fill"></i>
         <span class="pl-4 text-base">Semua</span>
       </button>
       <button type="button"
-        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300">
+        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300"
+        :class="{ 'bg-neutral-200': type === 'send' }" @click="onClickType('send')">
         <i class="ri-mail-send-line"></i>
         <span class="pl-4 text-base">Terkirim</span>
       </button>
       <button type="button"
-        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300">
+        class="btn py-3 px-2 justify-start rounded-none text-lg border-b hover:bg-neutral-200 active:bg-neutral-300"
+        :class="{ 'bg-neutral-200': type === 'process' }" @click="onClickType('process')">
         <i class="ri-shape-2-line"></i>
         <span class="pl-4 text-base">Diproses</span>
       </button>
       <button type="button"
-        class="btn py-3 px-2 justify-start rounded-none text-lg hover:bg-neutral-200 active:bg-neutral-300">
+        class="btn py-3 px-2 justify-start rounded-none text-lg hover:bg-neutral-200 active:bg-neutral-300"
+        :class="{ 'bg-neutral-200': type === 'done' }" @click="onClickType('done')">
         <i class="ri-verified-badge-line"></i>
         <span class="pl-4 text-base">Selesai</span>
       </button>
