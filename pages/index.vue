@@ -13,7 +13,15 @@ definePageMeta({
     </div>
   </div>
   <div class="card bg-white rounded-none col-span-3">
-    <h1 class="text-lg font-bold p-4">Filter Data</h1>
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-lg font-bold p-4">Filter Data</h1>
+      </div>
+      <div class="p-4">
+        <button
+          class="btn border border-neutral-400 p-1 hover:bg-neutral-400 hover:border-neutral-400 hover:text-white">Terapkan</button>
+      </div>
+    </div>
     <hr class="mt-2" />
     <div class="mt-4 flex flex-col">
       <div class="flex flex-col border-b border-b-neutral-200 px-2 pb-2 mb-2">
@@ -45,7 +53,8 @@ definePageMeta({
                 <div class="flex gap-2">
                   <input type="checkbox" id="checkbox-regional-1"
                     class="appearance-none peer w-4 h-4 border-2 border-neutral-300 rounded-sm bg-white mt-0.5 shrink-0 checked:bg-neutral-500 checked:border-0" />
-                  <label for="checkbox-regional-1" class="cursor-pointer select-none text-slate-700 text-sm">
+                  <label for="checkbox-regional-1"
+                    class="cursor-pointer select-none text-neutral-700 text-sm peer-checked:font-bold">
                     REG 1
                   </label>
                   <svg class="absolute w-4 h-4 mt-0.5 hidden pointer-events-none peer-checked:block"
@@ -55,10 +64,6 @@ definePageMeta({
                   </svg>
                 </div>
               </li>
-              <li>list 2</li>
-              <li>list 3</li>
-              <li>list 4</li>
-              <li>list 5</li>
             </ul>
           </div>
         </div>
