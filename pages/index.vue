@@ -2,6 +2,11 @@
 definePageMeta({
   layout: 'private'
 })
+
+const { data: areas } = await useLazyFetch('/api/area')
+const { data: fms } = await useLazyFetch('/api/fm')
+const { data: bms } = await useLazyFetch('/api/bm')
+const { data: fungsis } = await useLazyFetch('/api/fungsi')
 </script>
 
 <template>
@@ -23,7 +28,7 @@ definePageMeta({
       </div>
     </div>
     <hr class="mt-2" />
-    <div class="mt-4 flex flex-col">
+    <div class="mt-4 flex flex-col max-h-[32rem] overflow-x-hidden overflow-y-auto">
       <div class="flex flex-col border-b border-b-neutral-200 px-2 pb-2 mb-2">
         <div class="flex justify-between">
           <div>
@@ -49,13 +54,13 @@ definePageMeta({
           </div>
           <div class="px-2">
             <ul>
-              <li>
+              <li v-for="(area, index) in areas?.result">
                 <div class="flex gap-2">
-                  <input type="checkbox" id="checkbox-regional-1"
+                  <input type="checkbox" :id="`checkbox-regional-${index}`" :value="area.kode_area"
                     class="appearance-none peer w-4 h-4 border-2 border-neutral-300 rounded-sm bg-white mt-0.5 shrink-0 checked:bg-neutral-500 checked:border-0" />
-                  <label for="checkbox-regional-1"
-                    class="cursor-pointer select-none text-neutral-700 text-sm peer-checked:font-bold">
-                    REG 1
+                  <label :for="`checkbox-regional-${index}`"
+                    class="cursor-pointer select-none text-neutral-700 text-xs peer-checked:font-bold">
+                    {{ area.nama }}
                   </label>
                   <svg class="absolute w-4 h-4 mt-0.5 hidden pointer-events-none peer-checked:block"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"
@@ -91,7 +96,25 @@ definePageMeta({
             <input type="text" placeholder="Cari Area..."
               class="text-sm border border-neutral-300 w-full py-1 px-4 rounded-full focus-visible:outline-none focus-visible:border-[1.5px] focus-visible:border-neutral-400" />
           </div>
-          <div class="px-2">list data</div>
+          <div class="px-2">
+            <ul>
+              <li v-for="(fm, index) in fms?.result">
+                <div class="flex gap-2">
+                  <input type="checkbox" :id="`checkbox-regional-${index}`" :value="fm.kode_fm"
+                    class="appearance-none peer w-4 h-4 border-2 border-neutral-300 rounded-sm bg-white mt-0.5 shrink-0 checked:bg-neutral-500 checked:border-0" />
+                  <label :for="`checkbox-regional-${index}`"
+                    class="cursor-pointer select-none text-neutral-700 text-xs peer-checked:font-bold">
+                    {{ fm.nama }}
+                  </label>
+                  <svg class="absolute w-4 h-4 mt-0.5 hidden pointer-events-none peer-checked:block"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="flex flex-col border-b border-b-neutral-200 px-2 pb-2 mb-2">
@@ -117,10 +140,28 @@ definePageMeta({
             <input type="text" placeholder="Cari BM/TM/TRO..."
               class="text-sm border border-neutral-300 w-full py-1 px-4 rounded-full focus-visible:outline-none focus-visible:border-[1.5px] focus-visible:border-neutral-400" />
           </div>
-          <div class="px-2">list data</div>
+          <div class="px-2">
+            <ul>
+              <li v-for="(bm, index) in bms?.result">
+                <div class="flex gap-2">
+                  <input type="checkbox" :id="`checkbox-regional-${index}`" :value="bm.kode_fm"
+                    class="appearance-none peer w-4 h-4 border-2 border-neutral-300 rounded-sm bg-white mt-0.5 shrink-0 checked:bg-neutral-500 checked:border-0" />
+                  <label :for="`checkbox-regional-${index}`"
+                    class="cursor-pointer select-none text-neutral-700 text-xs peer-checked:font-bold">
+                    {{ bm.nama }}
+                  </label>
+                  <svg class="absolute w-4 h-4 mt-0.5 hidden pointer-events-none peer-checked:block"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="flex flex-col border-b border-b-neutral-200 px-2 pb-2 mb-2">
+      <div class="flex flex-col px-2 pb-2 mb-2">
         <div class="flex justify-between">
           <div>
             <h6 class="text-base font-semibold">Fungsi</h6>
@@ -143,7 +184,25 @@ definePageMeta({
             <input type="text" placeholder="Cari Fungsi..."
               class="text-sm border border-neutral-300 w-full py-1 px-4 rounded-full focus-visible:outline-none focus-visible:border-[1.5px] focus-visible:border-neutral-400" />
           </div>
-          <div class="px-2">list data</div>
+          <div class="px-2">
+            <ul>
+              <li v-for="(fungsi, index) in fungsis?.result">
+                <div class="flex gap-2">
+                  <input type="checkbox" :id="`checkbox-regional-${index}`" :value="fungsi.kode_fungsi"
+                    class="appearance-none peer w-4 h-4 border-2 border-neutral-300 rounded-sm bg-white mt-0.5 shrink-0 checked:bg-neutral-500 checked:border-0" />
+                  <label :for="`checkbox-regional-${index}`"
+                    class="cursor-pointer select-none text-neutral-700 text-xs peer-checked:font-bold">
+                    {{ fungsi.nama }}
+                  </label>
+                  <svg class="absolute w-4 h-4 mt-0.5 hidden pointer-events-none peer-checked:block"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
