@@ -4,7 +4,10 @@ export default defineNuxtConfig({
     head: {
       bodyAttrs: { class: "font-sans" },
       title: "Download Support",
-      link: [{ rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" }],
+      link: [
+        { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" },
+        { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" },
+      ],
     },
   },
   build: {
